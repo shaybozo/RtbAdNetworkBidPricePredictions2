@@ -151,6 +151,6 @@ The project was a great way for me to get in quickly into the deep learning worl
 In the Below link there is the final project GitHub repository that contain the 2 phases of data preparation and training and testing. Also please see all the documents such as data sachems, validation error graphs, etc.
 
 \subsection{GitHub repo}
-https://github.com/shaybozo/RtbAdNetworkBidPricePredictions
+https://github.com/shaybozo/RtbAdNetworkBidPricePredictions2
 
 \end{document}
