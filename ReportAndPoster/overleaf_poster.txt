@@ -1,0 +1,73 @@
+\documentclass[20pt,margin=1in,innermargin=-4.5in,blockverticalspace=-0.25in]{tikzposter}
+\geometry{paperwidth=42in,paperheight=30in}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amsthm}
+\usepackage{amssymb}
+\usepackage{mathrsfs}
+\usepackage{graphicx}
+\usepackage{adjustbox}
+\usepackage{enumitem}
+\usepackage[backend=biber,style=numeric]{biblatex}
+\usepackage{emory-theme}
+
+\usepackage{mwe} % for placeholder images
+
+\addbibresource{refs.bib}
+
+% set theme parameters
+\tikzposterlatexaffectionproofoff
+\usetheme{EmoryTheme}
+
+\title{RTB ad price predictions Poster}
+\author{Shay Bozo (ID. 301166278), Edan Hauon (ID. 305249187)}
+\institute{IDC, Israel}
+
+% begin document
+\begin{document}
+\maketitle
+\centering
+\begin{columns}
+    \column{0.32}
+    \block{Abstract}{
+         Fyber main product act as an ad exchange platform. When we get an 'ad request' we enrich the request with more data and send the bid request with a minimum floor price to the relevant ad networks DSPs companies that want to run their ads. The purpose of the project is to predict the responses of the ad networks DSPs
+    }
+    \block{The Problem in More Details}{
+          When an ad request received by the Viper web service and after I enriched it with all the relevant data I want to be able to predict in real time what will be the response of the ad network in both response status(bid, no bid, rejected, etc) and in cases of a bid also the bid price. With this prediction I can now perform a number of actions such as bid optimization - not sending the request in cases the prediction is for 'no bid' or changing the minimum auction floor price information that is about to be sent in order to get a better prediction
+    }
+    \block{Method}{
+        \begin{itemize}
+		  \item During the run of the Viper web service after every auction I will collect all relevant data and send it to Kafka
+		  \item From Kafka a consumer service will erad and upload the raw data to S3
+		  \item A daily Spark job on DataBricks will filter, transform and encode the raw data and will save it back to S3 ready to used
+		  \item Another daily job will train and test a DNN model using mainly TensorFlow
+		  \item The model will be export and saved backto S3 in Pmml format 
+		  \item The Viper web service will load the model and use it in run time
+		\end{itemize}
+    }
+
+    \column{0.36}
+    \block{Results}{
+        word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word
+        word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word
+    }
+    
+    \column{0.32}
+    
+    \block{Conclusions}{
+        word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word
+        word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word
+    }
+    
+    \block{References}{
+        \vspace{-1em}
+        \begin{footnotesize}
+        \printbibliography[heading=none]
+        \end{footnotesize}
+    }
+\end{columns}
+
+\includegraphics[scale=1.5]{Bid predictions data flow.jpg}
+
+\end{document}
