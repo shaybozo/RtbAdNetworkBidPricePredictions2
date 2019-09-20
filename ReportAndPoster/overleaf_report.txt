@@ -125,7 +125,7 @@ I used couple of internal works that were done inside the company but since it's
 \section{Experimental results}
 
 \begin{itemize}
-  \item Since the project uses internal private information I cannot provide real data to be run with
+  \item Since the project uses internal private commercial information I cannot provide real data to be run with
   \item Please see the report results with tables and figures in the appendixes for much more details 
 \end{itemize}
 

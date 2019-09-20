@@ -38,36 +38,40 @@
     }
     \block{Method}{
         \begin{itemize}
-		  \item During the run of the Viper web service after every auction I will collect all relevant data and send it to Kafka
-		  \item From Kafka a consumer service will erad and upload the raw data to S3
-		  \item A daily Spark job on DataBricks will filter, transform and encode the raw data and will save it back to S3 ready to used
-		  \item Another daily job will train and test a DNN model using mainly TensorFlow
-		  \item The model will be export and saved backto S3 in Pmml format 
-		  \item The Viper web service will load the model and use it in run time
-		\end{itemize}
+          \item During the run of the Viper web service after every auction I will collect all relevant data and send it to Kafka
+          \item From Kafka a consumer service will read and upload the raw data to S3
+          \item A daily Spark job on DataBricks will filter, transform and encode the raw data and will save it back to S3 ready to used
+          \item Another daily job will train and test a DNN model using mainly TensorFlow
+          \item The model will be export and saved back to S3 in Pmml format 
+          \item The Viper web service will load the model and use it in run time
+        \end{itemize}
     }
 
     \column{0.36}
     \block{Results}{
-        word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word
-        word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word
+        \begin{itemize}
+          \item The first job of data transformation takes ~1h to run and saves two files 1 for train and 1 for test to S3 to be used later 
+          \item The second job of building a model takes ~1/2h to run and saves the model to S3 in a Pmml format
+          \item The Viper web service load the model and gets predictions in real time
+          \item Please see other numeric predictions results in the report and the appendixes
+    \end{itemize}
+    \includegraphics{Bid predictions data flow.jpg}
     }
     
     \column{0.32}
     
     \block{Conclusions}{
-        word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word
-        word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word
+    \begin{itemize}
+          \item If you want to process a lot of information on a daily bases some parallelism must be done in order to get to a reasonable run time
+          \item There is no way today of using parallelism in the training and testing phase - this sets a very hard limit on the number of records that you can process on a daily bases and your model should be build in a way that recognize it
+          \item Most of the time should be spent on working on the data and understanding what are the important features and if you need to add new ones
+          \item In order to get to a reasonable data processing running time it's important to reduce all the not important features that don't significantly reduce the predictions errors
+          \item There are many tools and libraries to process and train data but most of them don't work together and many work around were needed.
+          \item In some business ceases there is much importance to time series and there is no specific way of doing it today - I broke the date to 6 different features
+    \end{itemize}
+        
     }
     
-    \block{References}{
-        \vspace{-1em}
-        \begin{footnotesize}
-        \printbibliography[heading=none]
-        \end{footnotesize}
-    }
 \end{columns}
-
-\includegraphics[scale=1.5]{Bid predictions data flow.jpg}
 
 \end{document}
